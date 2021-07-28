@@ -39,9 +39,9 @@ public class QuickSort {
 	private static void quickSort(int[] array, int low, int high){
 		if ( low < high)
 		{
-			int middle = partition(array, low, high);
-			quickSort(array, low, middle - 1);
-			quickSort(array, middle + 1, high);
+			int index = partition(array, low, high);
+			quickSort(array, low, index - 1);
+			quickSort(array, index + 1, high);
 		}
 	}
 	

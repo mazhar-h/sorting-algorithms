@@ -26,8 +26,8 @@ def sort(array, low, high):
 
 def main():
     array = [5,3,2,4,1]
-    unsorted = copy.deepcopy(array)
 
+    unsorted = copy.deepcopy(array)
     n = len(unsorted) - 1
     start_time = time.perf_counter_ns()
     sort(array, 0, n)

@@ -3,40 +3,61 @@ package Java;
 public class QuickSort {
 	
 	public static void main(String[] args){
-		int[] array = {5, 3, 2, 4, 1};
+		int[] array = Sort.buildDataSet(1000);
 		long startTime, endTime;
 		double time;
 		
+		QuickSort qs = new QuickSort();
 		startTime = System.nanoTime();
-		sort(array);
+		qs.sort(array);
 		endTime = System.nanoTime();
 		time = (double) (endTime - startTime) / 1000000000;
 		System.out.printf("Quick Sort running time: %.7fs\n", time);
 	}
 	
-	private static int partition(int[] arr, int low, int high){
-		int pivot = high;
+	private void swap(int[] array, int idx1, int idx2){
+		int temp = array[idx1];
+		array[idx1] = array[idx2];
+		array[idx2] = temp;
+	}
+	
+	private int medianOfThree(int[] array, int low, int high){
+        int middle = ( low + high ) / 2;
+        
+        if( array[middle] < array[low] )
+            swap(array, low, middle);
+        if( array[high] <array[low] )
+            swap(array, low, high);
+        if( array[high] < array[middle] )
+            swap(array, middle, high);
+
+        swap(array, middle, high-1);  
+
+        return high-1;
+	}
+	
+	private int partition(int[] array, int low, int high){
+		int pivot = medianOfThree(array, low, high);
 		
 		//move elements larger than the pivot
 		//to the right of the pivot
 		while (low < pivot)
 		{
-			if ( arr[low] > arr[pivot] )
+			if ( array[low] > array[pivot] )
 			{
-				int temp = arr[low];
-				arr[low] = arr[pivot - 1];
-				arr[pivot - 1] = arr[pivot];
-				arr[pivot] = temp;
+				int temp = array[low];
+				array[low] = array[pivot - 1];
+				array[pivot - 1] = array[pivot];
+				array[pivot] = temp;
 				pivot--;
 			}
 			else
 				low++;
 		}
-		
 		return pivot;
 	}
 	
-	private static void quickSort(int[] array, int low, int high){
+	private void quickSort(int[] array, int low, int high){
 		if ( low < high)
 		{
 			int index = partition(array, low, high);
@@ -45,7 +66,7 @@ public class QuickSort {
 		}
 	}
 	
-	public static void sort(int[] array){
+	public void sort(int[] array){
 		quickSort(array, 0, array.length - 1);
 	}
 }

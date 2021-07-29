@@ -3,18 +3,19 @@ package Java;
 public class MergeSort {
 	
 	public static void main(String[] args){
-		int[] array = {5, 3, 2, 4, 1};
+		int[] array = Sort.buildDataSet(1000);
 		long startTime, endTime;
 		double time;
 		
+		MergeSort ms = new MergeSort();
 		startTime = System.nanoTime();
-		sort(array);
+		ms.sort(array);
 		endTime = System.nanoTime();
 		time = (double) (endTime - startTime) / 1000000000;
-		System.out.printf("\nMerge Sort running time: %.7fs\n", time);
+		System.out.printf("Merge Sort running time: %.7fs\n", time);
 	}
 	
-	private static int[] merge(int[] array, int low, int middle, int high){
+	private int[] merge(int[] array, int low, int middle, int high){
 		int i = 0; // track arrayA's index
 		int j = 0; // track arrayB's index
 		int k = low; // track arrayC's index
@@ -37,7 +38,6 @@ public class MergeSort {
 				array[k] = arrayA[i++];
 			else
 				array[k] = arrayB[j++];
-		
 			k++;
 		}
 		
@@ -51,7 +51,7 @@ public class MergeSort {
 		return array;
 	}
 	
-	private static void mergeSort(int[] array, int low, int high){
+	private void mergeSort(int[] array, int low, int high){
 		if ( low < high )
 		{
 			int middle = (high - low) / 2 + low;
@@ -61,7 +61,7 @@ public class MergeSort {
 		}
 	}
 	
-	public static void sort(int[] array){
+	public void sort(int[] array){
 		//sort entire array
 		mergeSort(array, 0, array.length - 1);
 	}

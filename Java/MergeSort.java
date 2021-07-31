@@ -18,7 +18,7 @@ public class MergeSort {
 	private int[] merge(int[] array, int low, int middle, int high){
 		int i = 0; // track arrayA's index
 		int j = 0; // track arrayB's index
-		int k = low; // track arrayC's index
+		int k = low; // track array's index
 		int lenA = middle - low + 1;
 		int lenB = high - middle;
 		
@@ -35,10 +35,9 @@ public class MergeSort {
 		while ( i < lenA && j < lenB )
 		{
 			if ( arrayA[i] < arrayB[j] )
-				array[k] = arrayA[i++];
+				array[k++] = arrayA[i++];
 			else
-				array[k] = arrayB[j++];
-			k++;
+				array[k++] = arrayB[j++];
 		}
 		
 		//merge any trailing elements

@@ -15,10 +15,10 @@ public class QuickSort {
 		System.out.printf("Quick Sort running time: %.7fs\n", time);
 	}
 	
-	private void swap(int[] array, int idx1, int idx2){
-		int temp = array[idx1];
-		array[idx1] = array[idx2];
-		array[idx2] = temp;
+	private void swap(int[] array, int index1, int index2){
+		int temp = array[index1];
+		array[index1] = array[index2];
+		array[index2] = temp;
 	}
 	
 	private int medianOfThree(int[] array, int low, int high){

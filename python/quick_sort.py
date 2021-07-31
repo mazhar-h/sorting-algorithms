@@ -1,8 +1,27 @@
 import time
 import copy
 
+def swap(array, index1, index2):
+    temp = array[index1]
+    array[index1] = array[index2]
+    array[index2] = temp
+
+def median_of_three(array, low, high):
+    middle = (high - low) / 2 + low
+
+    if array[low] > array[middle]:
+        swap(array, low, middle)
+    if array[low] > array[high]:
+        swap(array, low, high)
+    if array[middle] > array[high]:
+        swap(array, middle, high)
+
+    swap(array, middle, high - 1)
+
+    return high - 1
+
 def partition(array, low, high):
-    pivot = high
+    pivot = median_of_three(array, low, high)
 
     #move elements larger than the pivot
     #to the right of the pivot

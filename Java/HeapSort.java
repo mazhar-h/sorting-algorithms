@@ -14,7 +14,7 @@ public class HeapSort {
 		hs.sort(array);
 		endTime = System.nanoTime();
 		time = (double) (endTime - startTime) / 1000000000;
-		System.out.printf("Shell Sort running time: %.7fs\n", time);
+		System.out.printf("Heap Sort running time: %.7fs\n", time);
 	}
 	
 	PriorityQueue<Integer> heap;

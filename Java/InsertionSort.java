@@ -15,15 +15,14 @@ public class InsertionSort {
 		System.out.printf("Insertion Sort running time: %.7fs\n", time);
 	}
 	
-	public void sort(int[] array){
-		int j;
-		
-		for (int p = 1; p < array.length; p++)
+	public void sort(int[] array){		
+		for (int i = 1; i < array.length; i++)
 		{
-			int temp = array[p]; // create hole
-			
+			int temp = array[i]; // create hole
+			int j;
+
 			//slide greater elements down
-			for (j = p; j > 0; j--)
+			for (j = i; j > 0; j--)
 			{
 				if ( array[j-1] > temp )
 					array[j] = array[j-1];

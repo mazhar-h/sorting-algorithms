@@ -5,7 +5,7 @@ import java.util.Random;
 public class Sort {
 	
 	public static void main(String[] args){
-		int[] array = buildDataSet(10);
+		int[] array = buildDataSet(100000);
 		
 		runSort(array);
 	}

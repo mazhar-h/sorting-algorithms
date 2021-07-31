@@ -1,7 +1,7 @@
 # sorting-algorithms
 Here is a collection of sorting algorithms implemented in various lanugages.
 
-Bubble Sort   
+>Bubble Sort   
 
 Time Complexity: O(n^2)
 

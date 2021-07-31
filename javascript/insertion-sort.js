@@ -1,8 +1,7 @@
 function sort(array){
-    var j;
-    
     for (let p = 1; p < array.length; p++)
     {
+        var j;
         let temp = array[p]; // create hole
         
         //slide greater elements down
@@ -16,9 +15,3 @@ function sort(array){
         array[j] = temp;
     }
 }
-
-a = [5, 3, 2, 4, 1]
-
-sort(a)
-
-console.log(a)

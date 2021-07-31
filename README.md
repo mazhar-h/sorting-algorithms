@@ -2,9 +2,7 @@
 Here is a collection of sorting algorithms implemented in various lanugages.
 
 >Bubble Sort   
-
 Time Complexity: O(n^2)
-
 Space Complexity: O(1)
 
 

@@ -1,26 +1,23 @@
-import time
 import copy
-import quick_sort
+import sort_tools
+import bubble_sort
+import selection_sort
+import insertion_sort
+import shell_sort
+import heap_sort
 import merge_sort
+import quick_sort
+import counting_sort
 
 def main():
-    array = [5,3,2,4,1]
-    
-    unsorted = copy.deepcopy(array)
-    n = len(unsorted) - 1
-    start_time = time.perf_counter_ns()
-    quick_sort.sort(array, 0, n)
-    end_time = time.perf_counter_ns()
-    running_time = (end_time - start_time) / 1000000000
-    print("quick sort running time: {:.7f}s".format(running_time))
+    data = sort_tools.build_data_set(100000)
 
-    unsorted = copy.deepcopy(array)
-    n = len(unsorted) - 1
-    start_time = time.perf_counter_ns()
-    merge_sort.sort(unsorted, 0, n)
-    end_time = time.perf_counter_ns()
-    running_time = (end_time - start_time) / 1000000000
-    print("merge sort running time: {:.7f}s".format(running_time))
+    s = [bubble_sort, selection_sort, insertion_sort,
+         shell_sort, heap_sort, merge_sort, quick_sort, counting_sort]
+
+    for sort_type in s:
+        unsorted = copy.deepcopy(data)
+        sort_type.sort(unsorted)
 
 if __name__ == "__main__":
     main()

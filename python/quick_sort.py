@@ -1,58 +1,57 @@
-import time
-import copy
+import sort_tools
+import copy 
 
-def swap(array, index1, index2):
-    temp = array[index1]
-    array[index1] = array[index2]
-    array[index2] = temp
+def swap(data, index1, index2):
+    temp = data[index1]
+    data[index1] = data[index2]
+    data[index2] = temp
 
-def median_of_three(array, low, high):
-    middle = (high - low) / 2 + low
+def median_of_three(data, low, high):
+    middle = (high - low) // 2 + low
 
-    if array[low] > array[middle]:
-        swap(array, low, middle)
-    if array[low] > array[high]:
-        swap(array, low, high)
-    if array[middle] > array[high]:
-        swap(array, middle, high)
+    if data[low] > data[middle]:
+        swap(data, low, middle)
+    if data[low] > data[high]:
+        swap(data, low, high)
+    if data[middle] > data[high]:
+        swap(data, middle, high)
 
-    swap(array, middle, high - 1)
+    swap(data, middle, high - 1)
 
     return high - 1
 
-def partition(array, low, high):
-    pivot = median_of_three(array, low, high)
+def partition(data, low, high):
+    pivot = median_of_three(data, low, high)
 
     #move elements larger than the pivot
     #to the right of the pivot
     while low < pivot:
-        if array[low] > array[pivot]:
-            temp = array[low]
-            array[low] = array[pivot-1]
-            array[pivot-1] = array[pivot]
-            array[pivot] = temp
+        if data[low] > data[pivot]:
+            temp = data[low]
+            data[low] = data[pivot-1]
+            data[pivot-1] = data[pivot]
+            data[pivot] = temp
             pivot -= 1
         else:
             low += 1
     
     return pivot
 
-def sort(array, low, high):
+def quick_sort(data, low, high):
     if low < high:
-        middle = partition(array, low, high)
-        sort(array, low, middle - 1)
-        sort(array, middle + 1, high)
+        middle = partition(data, low, high)
+        quick_sort(data, low, middle - 1)
+        quick_sort(data, middle + 1, high)
+
+@sort_tools.timeit('quick')
+def sort(data):
+    quick_sort(data, 0, len(data) - 1)
 
 def main():
-    array = [5,3,2,4,1]
+    data = sort_tools.build_data_set(5)
 
-    unsorted = copy.deepcopy(array)
-    n = len(unsorted) - 1
-    start_time = time.perf_counter_ns()
-    sort(array, 0, n)
-    end_time = time.perf_counter_ns()
-    running_time = (end_time - start_time) / 1000000000
-    print("quick sort running time: {:.7f}s".format(running_time))
+    unsorted = copy.deepcopy(data)
+    sort(unsorted)
 
 if __name__ == "__main__":
     main()

@@ -1,11 +1,27 @@
-def sort(array):
-    for i in range(1, len(array)):
-        temp = array[i]; # create hole
-        j = i
+import sort_tools
+import copy
 
+def insertion_sort(data, n):
+    for i in range(1, n):
+        temp = data[i]; # create hole
+        
         #slide greater elements down
-        while j > 0 and array[j-1] > temp:
-            array[j] = array[j-1]
+        j = i
+        while j > 0 and data[j-1] > temp:
+            data[j] = data[j-1]
             j -= 1
 
-        array[j] = temp
+        data[j] = temp
+
+@sort_tools.timeit('insertion')
+def sort(data):
+    insertion_sort(data, len(data))
+
+def main():
+    data = sort_tools.build_data_set(5)
+
+    unsorted = copy.deepcopy(data)
+    sort(unsorted)
+
+if __name__ == "__main__":
+    main()

@@ -1,55 +1,61 @@
-import time
+import sort_tools
 import copy
 
-def merge(array, low, middle, high):
-    array_a = []
-    array_b = []
-    k = low
+def merge(data, low, middle, high):
+    data_a = []
+    data_b = []
+    len_a = middle - low + 1
+    len_b = high - middle
+    i = 0   # track data_a
+    j = 0   # track data_b
+    k = low # track original data set
 
-    for i in range(middle - low + 1):
-        array_a.append(array[low + i])
+    for idx in range(middle - low + 1):
+        data_a.append(data[low + idx])
 
-    for i in range(high - middle):
-        array_b.append(array[middle + i + 1])
+    for idx in range(high - middle):
+        data_b.append(data[middle + idx + 1])
 
     #compare and merge
-    while len(array_a) > 0 and len(array_b) > 0:
-        if array_a[0] < array_b[0]:
-            array[k] = array_a[0]
-            array_a.pop(0)
+    while i < len_a and j < len_b:
+        a = data[i]
+        b = data[j]
+
+        if a < b:
+            data[k] = a
+            i += 1
         else:
-            array[k] = array_b[0]
-            array_b.pop(0)
-        k += 1
-    
-    #merge any trailing elements
-    while len(array_a) > 0:
-        array[k] = array_a[0]
-        array_a.pop(0)
+            data[k] = b
+            j += 1
         k += 1
 
-    while len(array_b) > 0:
-        array[k] = array_b[0]
-        array_b.pop(0)
+    #merge any trailing elements
+    while i < len_a:
+        data[k] = data_a[i]
+        i += 1
+        k += 1
+
+    while j < len_b:
+        data[k] = data_b[j]
+        j += 1
         k += 1
     
-def sort(array, low, high):
+def merge_sort(data, low, high):
     if low < high:
-        middle = int((high - low) / 2) + low
-        sort(array, low, middle)
-        sort(array, middle + 1, high)
-        merge(array, low, middle, high)
+        middle = (high - low) // 2 + low
+        merge_sort(data, low, middle)
+        merge_sort(data, middle + 1, high)
+        merge(data, low, middle, high)
+
+@sort_tools.timeit('merge')
+def sort(data):
+    merge_sort(data, 0, len(data) - 1)
 
 def main():
-    array = [5,3,2,4,1]
+    data = sort_tools.build_data_set(5)
 
-    unsorted = copy.deepcopy(array)
-    n = len(unsorted) - 1
-    start_time = time.perf_counter_ns()
-    sort(unsorted, 0, n)
-    end_time = time.perf_counter_ns()
-    running_time = (end_time - start_time) / 1000000000
-    print("merge sort running time: {:.7f}s".format(running_time))
+    unsorted = copy.deepcopy(data)
+    sort(unsorted)
 
 if __name__ == "__main__":
     main()

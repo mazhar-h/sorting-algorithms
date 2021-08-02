@@ -12,3 +12,5 @@ Heap Sort
 Merge Sort
 
 Quick Sort
+
+Counting Sort

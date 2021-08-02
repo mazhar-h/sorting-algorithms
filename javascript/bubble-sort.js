@@ -1,12 +1,16 @@
-function sort(array){
-    for (let i = 0; i < array.length; i++)
-        for (let j = i; j < array.length; j++)
+function bubbleSort(array, low, high){
+    for (let i = low; i < high; i++)
+        for (let j = low; j < high-i-1; j++)
         {
-            if ( array[i] > array[j] )
+            if ( array[j] > array[j+1] )
             {
-                let temp = array[i]
-                array[i] = array[j]
-                array[j] = temp
+                let temp = array[j];
+                array[j] = array[j+1];
+                array[j+1] = temp;
             }
         }
+}
+
+function sort(array){
+    bubbleSort(array, 0, array.length);
 }

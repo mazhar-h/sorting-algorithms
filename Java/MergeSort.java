@@ -1,67 +1,62 @@
 package Java;
 
-public class MergeSort {
+public class MergeSort extends Sort{
 	
 	public static void main(String[] args){
-		int[] array = Sort.buildDataSet(1000);
-		long startTime, endTime;
-		double time;
+		int[] data = Sort.buildDataSet(5);
 		
-		MergeSort ms = new MergeSort();
-		startTime = System.nanoTime();
-		ms.sort(array);
-		endTime = System.nanoTime();
-		time = (double) (endTime - startTime) / 1000000000;
-		System.out.printf("Merge Sort running time: %.7fs\n", time);
+		Sort.runSort(new MergeSort(), data);
 	}
 	
-	private int[] merge(int[] array, int low, int middle, int high){
-		int i = 0; // track arrayA's index
-		int j = 0; // track arrayB's index
-		int k = low; // track array's index
+	public MergeSort(){ name = "Merge"; }
+	
+	private int[] merge(int[] data, int low, int middle, int high){
+		int i = 0; 		// track dataA's index
+		int j = 0; 		// track dataB's index
+		int k = low; 	// track data's index
 		int lenA = middle - low + 1;
 		int lenB = high - middle;
 		
-		int[] arrayA = new int[lenA];
-		int[] arrayB = new int[lenB];
+		int[] dataA = new int[lenA];
+		int[] dataB = new int[lenB];
 		
 		for (int idx = 0; idx < lenA; idx++)
-			arrayA[idx] = array[low + idx];
+			dataA[idx] = data[low + idx];
 		
 		for (int idx = 0; idx < lenB; idx++)
-			arrayB[idx] = array[middle + idx + 1];
+			dataB[idx] = data[middle + idx + 1];
 		
 		//compare and merge
 		while ( i < lenA && j < lenB )
 		{
-			if ( arrayA[i] < arrayB[j] )
-				array[k++] = arrayA[i++];
+			if ( dataA[i] < dataB[j] )
+				data[k++] = dataA[i++];
 			else
-				array[k++] = arrayB[j++];
+				data[k++] = dataB[j++];
 		}
 		
 		//merge any trailing elements
-		while ( i < arrayA.length )
-			array[k++] = arrayA[i++];
+		while ( i < dataA.length )
+			data[k++] = dataA[i++];
 		
-		while ( j < arrayB.length )
-			array[k++] = arrayB[j++];
+		while ( j < dataB.length )
+			data[k++] = dataB[j++];
 		
-		return array;
+		return data;
 	}
 	
-	private void mergeSort(int[] array, int low, int high){
+	private void mergeSort(int[] data, int low, int high){
 		if ( low < high )
 		{
 			int middle = (high - low) / 2 + low;
-			mergeSort(array, low, middle);
-			mergeSort(array, middle + 1, high);
-			merge(array, low, middle, high);
+			mergeSort(data, low, middle);
+			mergeSort(data, middle + 1, high);
+			merge(data, low, middle, high);
 		}
 	}
 	
-	public void sort(int[] array){
-		//sort entire array
-		mergeSort(array, 0, array.length - 1);
+	@Override
+	public void sort(int[] data){
+		mergeSort(data, 0, data.length - 1);
 	}
 }

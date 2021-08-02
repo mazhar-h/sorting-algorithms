@@ -1,38 +1,53 @@
 package Java;
 
-import java.util.PriorityQueue;
-
-public class HeapSort {
+public class HeapSort extends Sort{
 	
 	public static void main(String[] args){
-		int[] array = Sort.buildDataSet(1000);
-		long startTime, endTime;
-		double time;
+		int[] data = Sort.buildDataSet(5);
 		
-		HeapSort hs = new HeapSort(array);
-		startTime = System.nanoTime();
-		hs.sort(array);
-		endTime = System.nanoTime();
-		time = (double) (endTime - startTime) / 1000000000;
-		System.out.printf("Heap Sort running time: %.7fs\n", time);
+		Sort.runSort(new HeapSort(), data);
 	}
 	
-	PriorityQueue<Integer> heap;
+	public HeapSort(){ name = "Heap"; }
 	
-	private HeapSort(){};
-	
-	public HeapSort(int[] array){
-		heap = new PriorityQueue<>();
-		buildHeap(array);
+	private void deleteMin(int[] data, int currentSize){    
+	    int min = data[0];
+	    data[0] = data[currentSize--];
+	    percolateDown(data, 0, currentSize);
+	    data[currentSize + 1] = min;
+	}
+
+	private void heapify(int[] data, int currentSize){
+	    for (int i = currentSize/2; i >= 0; i--)
+	        percolateDown(data, i, currentSize);
+	}
+
+	private void percolateDown(int[] data, int node, int currentSize){
+	    int temp = data[node];
+
+	    while ( (node + 1) * 2 - 1 <= currentSize )
+	    {
+	        int child = (node + 1) * 2 - 1; //left child
+	        
+	        if ( child != currentSize && data[child + 1] > data[child] )
+	            child++;
+	        if ( data[child] > temp )
+	            data[node] = data[child];
+	        else
+	            break;
+
+	        node = child;
+	    }
+	    data[node] = temp;
 	}
 	
-	private void buildHeap(int[] array){
-		for (int e : array)
-			heap.add(e);
-	}
-	
-	public void sort(int[] array){
-		for (int i = 0; i < array.length; i++)
-			array[i] = heap.remove(); //get min element
+	@Override
+	public void sort(int[] data){
+	    int currentSize = data.length - 1;
+	    
+	    heapify(data, currentSize);
+
+	    while ( currentSize > 0 )
+	        deleteMin(data, currentSize--);
 	}
 }

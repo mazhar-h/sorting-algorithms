@@ -1,54 +1,43 @@
 package Java;
 
-public class QuickSort {
+public class QuickSort extends Sort{
 	
 	public static void main(String[] args){
-		int[] array = Sort.buildDataSet(1000);
-		long startTime, endTime;
-		double time;
+		int[] data = Sort.buildDataSet(5);
 		
-		QuickSort qs = new QuickSort();
-		startTime = System.nanoTime();
-		qs.sort(array);
-		endTime = System.nanoTime();
-		time = (double) (endTime - startTime) / 1000000000;
-		System.out.printf("Quick Sort running time: %.7fs\n", time);
+		Sort.runSort(new QuickSort(), data);
 	}
 	
-	private void swap(int[] array, int index1, int index2){
-		int temp = array[index1];
-		array[index1] = array[index2];
-		array[index2] = temp;
-	}
-	
-	private int medianOfThree(int[] array, int low, int high){
+	public QuickSort(){ name = "Quick"; }
+		
+	private int medianOfThree(int[] data, int low, int high){
         int middle = ( low + high ) / 2;
         
-        if( array[middle] < array[low] )
-            swap(array, low, middle);
-        if( array[high] <array[low] )
-            swap(array, low, high);
-        if( array[high] < array[middle] )
-            swap(array, middle, high);
+        if( data[middle] < data[low] )
+            swap(data, low, middle);
+        if( data[high] <data[low] )
+            swap(data, low, high);
+        if( data[high] < data[middle] )
+            swap(data, middle, high);
 
-        swap(array, middle, high-1);  
+        swap(data, middle, high-1);  
 
         return high-1;
 	}
 	
-	private int partition(int[] array, int low, int high){
-		int pivot = medianOfThree(array, low, high);
+	private int partition(int[] data, int low, int high){
+		int pivot = medianOfThree(data, low, high);
 		
 		//move elements larger than the pivot
 		//to the right of the pivot
 		while (low < pivot)
 		{
-			if ( array[low] > array[pivot] )
+			if ( data[low] > data[pivot] )
 			{
-				int temp = array[low];
-				array[low] = array[pivot - 1];
-				array[pivot - 1] = array[pivot];
-				array[pivot] = temp;
+				int temp = data[low];
+				data[low] = data[pivot - 1];
+				data[pivot - 1] = data[pivot];
+				data[pivot] = temp;
 				pivot--;
 			}
 			else
@@ -57,16 +46,23 @@ public class QuickSort {
 		return pivot;
 	}
 	
-	private void quickSort(int[] array, int low, int high){
+	private void quickSort(int[] data, int low, int high){
 		if ( low < high)
 		{
-			int index = partition(array, low, high);
-			quickSort(array, low, index - 1);
-			quickSort(array, index + 1, high);
+			int index = partition(data, low, high);
+			quickSort(data, low, index - 1);
+			quickSort(data, index + 1, high);
 		}
 	}
 	
-	public void sort(int[] array){
-		quickSort(array, 0, array.length - 1);
+	@Override
+	public void sort(int[] data){
+		quickSort(data, 0, data.length - 1);
+	}
+	
+	private void swap(int[] data, int index1, int index2){
+		int temp = data[index1];
+		data[index1] = data[index2];
+		data[index2] = temp;
 	}
 }

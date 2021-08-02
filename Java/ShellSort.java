@@ -1,38 +1,32 @@
 package Java;
 
-public class ShellSort {
+public class ShellSort extends Sort{
 	
 	public static void main(String[] args){
-		int[] array = Sort.buildDataSet(1000);
-		long startTime, endTime;
-		double time;
+		int[] data = Sort.buildDataSet(5);
 		
-		ShellSort ss = new ShellSort();
-		startTime = System.nanoTime();
-		ss.sort(array);
-		endTime = System.nanoTime();
-		time = (double) (endTime - startTime) / 1000000000;
-		System.out.printf("Shell Sort running time: %.7fs\n", time);
+		Sort.runSort(new ShellSort(), data);
 	}
 	
-	public void sort(int[] array){
-	     int j;
-	     
-	     for( int gap = array.length/2; gap > 0; gap /= 2 ) // determine sequence
-	         for( int i = gap; i < array.length; i++ )
+	public ShellSort(){ name = "Shell"; }
+	
+	private void shellSort(int[] data){
+	     for( int gap = data.length/2; gap > 0; gap /= 2 ) // determine sequence
+	         for( int i = gap; i < data.length; i++ )
 	         {
-	             int temp = array[i]; // create hole
+	             int temp = data[i]; // create hole
 	             
 	             //slide greater elements down
-	             for(j = i; j >= gap; j -= gap )
-	             {	 	            	 
-	            	 if ( array[j-gap] > temp )
-	            		 array[j] = array[j-gap];
-	            	 else
-	            		 break;
-	             }
-	             array[j] = temp;
+	    	     int j;
+	             for(j = i; j >= gap && data[j-gap] > temp; j -= gap )
+	            	 data[j] = data[j-gap];
+	             
+	             data[j] = temp;
 	         }
 	}
-
+	
+	@Override
+	public void sort(int[] data){	     
+		shellSort(data);
+	}
 }

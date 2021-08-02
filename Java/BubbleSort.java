@@ -1,30 +1,30 @@
 package Java;
 
-public class BubbleSort {
+public class BubbleSort extends Sort{
 	
 	public static void main(String[] args){
-		int[] array = {5, 3, 2, 4, 1};
-		long startTime, endTime;
-		double time;
+		int[] data = {5, 3, 2, 4, 1};
 		
-		BubbleSort bs = new BubbleSort();
-		startTime = System.nanoTime();
-		bs.sort(array);
-		endTime = System.nanoTime();
-		time = (double) (endTime - startTime) / 1000000000;
-		System.out.printf("Bubble Sort running time: %.7fs\n", time);
+		Sort.runSort(new BubbleSort(), data);
 	}
 	
-	public void sort(int[] array){
-		for (int i = 0; i < array.length; i++)
-			for (int j = i + 1; j < array.length; j++)
+	public BubbleSort(){ name = "Bubble"; }
+	
+	private void bubbleSort(int[] data, int low, int high){
+		for (int i = low; i < high; i++)
+			for (int j = low; j < high - i - 1; j++)
 			{	//swap
-				if ( array[i] > array[j] )
+				if ( data[j] > data[j+1] )
 				{
-					int temp = array[i];
-					array[i] =  array[j];
-					array[j] = temp;
+					int temp = data[j];
+					data[j] =  data[j+1];
+					data[j+1] = temp;
 				}
 			}
+	}
+	
+	@Override
+	public void sort(int[] data){
+		bubbleSort(data, 0, data.length);
 	}
 }

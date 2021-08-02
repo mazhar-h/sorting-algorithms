@@ -1,35 +1,31 @@
 package Java;
 
-public class InsertionSort {
+public class InsertionSort extends Sort{
 	
 	public static void main(String[] args){
-		int[] array = Sort.buildDataSet(1000);
-		long startTime, endTime;
-		double time;
+		int[] data = Sort.buildDataSet(5);
 		
-		InsertionSort is = new InsertionSort();
-		startTime = System.nanoTime();
-		is.sort(array);
-		endTime = System.nanoTime();
-		time = (double) (endTime - startTime) / 1000000000;
-		System.out.printf("Insertion Sort running time: %.7fs\n", time);
+		Sort.runSort(new InsertionSort(), data);
 	}
 	
-	public void sort(int[] array){		
-		for (int i = 1; i < array.length; i++)
+	public InsertionSort(){ name = "Insertion"; }
+	
+	private void insertionSort(int[] data){
+		for (int i = 1; i < data.length; i++)
 		{
-			int temp = array[i]; // create hole
-			int j;
+			int temp = data[i]; // create hole
 
 			//slide greater elements down
-			for (j = i; j > 0; j--)
-			{
-				if ( array[j-1] > temp )
-					array[j] = array[j-1];
-				else
-					break;
-			}
-			array[j] = temp;
+			int j;
+			for (j = i; j > 0 && data[j-1] > temp; j--)
+				data[j] = data[j-1];
+			
+			data[j] = temp;
 		}
+	}
+	
+	@Override
+	public void sort(int[] data){		
+		insertionSort(data);
 	}
 }

@@ -5,7 +5,7 @@ public class SelectionSort extends Sort{
 	public static void main(String[] args){
 		int[] data = {5, 3, 2, 4, 1};
 		
-		Sort.runSort(new SelectionSort(), data);
+		timeSort(new SelectionSort(), data);
 	}
 	
 	public SelectionSort(){ name = "Selection"; }

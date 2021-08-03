@@ -3,9 +3,9 @@ package Java;
 public class MergeSort extends Sort{
 	
 	public static void main(String[] args){
-		int[] data = Sort.buildDataSet(5);
+		int[] data = buildDataSet(5);
 		
-		Sort.runSort(new MergeSort(), data);
+		timeSort(new MergeSort(), data);
 	}
 	
 	public MergeSort(){ name = "Merge"; }

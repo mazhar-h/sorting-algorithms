@@ -5,16 +5,16 @@ import java.util.Random;
 public class Sort {
 	
 	public static void main(String[] args){
-		int[] data = buildDataSet(1000000);
+		int[] data = buildDataSet(10000);
 		
-		runSort(new BubbleSort(), data);
-		runSort(new SelectionSort(), data);
-		runSort(new InsertionSort(), data);
-		runSort(new ShellSort(), data);
-		runSort(new HeapSort(), data);
-		runSort(new MergeSort(), data);
-		runSort(new QuickSort(), data);
-		runSort(new CountingSort(), data);
+		timeSort(new BubbleSort(), data);
+		timeSort(new SelectionSort(), data);
+		timeSort(new InsertionSort(), data);
+		timeSort(new ShellSort(), data);
+		timeSort(new HeapSort(), data);
+		timeSort(new MergeSort(), data);
+		timeSort(new QuickSort(), data);
+		timeSort(new CountingSort(), data);
 	}
 	
 	String name;
@@ -23,7 +23,7 @@ public class Sort {
 	
 	public void sort(int[] data){}
 	
-	public static void runSort(Sort s, int[] data){
+	public static void timeSort(Sort s, int[] data){
 		int[] unsorted;
 		long startTime, endTime;
 		double time;

@@ -3,9 +3,9 @@ package Java;
 public class QuickSort extends Sort{
 	
 	public static void main(String[] args){
-		int[] data = Sort.buildDataSet(5);
+		int[] data = buildDataSet(5);
 		
-		Sort.runSort(new QuickSort(), data);
+		timeSort(new QuickSort(), data);
 	}
 	
 	public QuickSort(){ name = "Quick"; }

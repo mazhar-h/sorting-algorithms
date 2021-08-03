@@ -3,9 +3,9 @@ package Java;
 public class HeapSort extends Sort{
 	
 	public static void main(String[] args){
-		int[] data = Sort.buildDataSet(5);
+		int[] data = buildDataSet(5);
 		
-		Sort.runSort(new HeapSort(), data);
+		timeSort(new HeapSort(), data);
 	}
 	
 	public HeapSort(){ name = "Heap"; }

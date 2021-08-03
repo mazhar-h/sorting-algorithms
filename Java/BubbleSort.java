@@ -5,7 +5,7 @@ public class BubbleSort extends Sort{
 	public static void main(String[] args){
 		int[] data = {5, 3, 2, 4, 1};
 		
-		Sort.runSort(new BubbleSort(), data);
+		timeSort(new BubbleSort(), data);
 	}
 	
 	public BubbleSort(){ name = "Bubble"; }

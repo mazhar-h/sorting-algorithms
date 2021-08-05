@@ -8,7 +8,7 @@ public class BubbleSort extends Sort{
 		timeSort(new BubbleSort(), data);
 	}
 	
-	public BubbleSort(){ name = "Bubble"; }
+	public BubbleSort(){ super("Bubble"); }
 	
 	private void bubbleSort(int[] data, int low, int high){
 		for (int i = low; i < high; i++)

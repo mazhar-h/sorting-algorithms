@@ -8,7 +8,7 @@ public class HeapSort extends Sort{
 		timeSort(new HeapSort(), data);
 	}
 	
-	public HeapSort(){ name = "Heap"; }
+	public HeapSort(){ super("Heap"); }
 	
 	private void deleteMin(int[] data, int currentSize){    
 	    int min = data[0];

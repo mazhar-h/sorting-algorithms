@@ -8,7 +8,7 @@ public class InsertionSort extends Sort{
 		timeSort(new InsertionSort(), data);
 	}
 	
-	public InsertionSort(){ name = "Insertion"; }
+	public InsertionSort(){ super("Insertion"); }
 	
 	private void insertionSort(int[] data){
 		for (int i = 1; i < data.length; i++)

@@ -8,7 +8,7 @@ public class QuickSort extends Sort{
 		timeSort(new QuickSort(), data);
 	}
 	
-	public QuickSort(){ name = "Quick"; }
+	public QuickSort(){ super("Quick"); }
 		
 	private int medianOfThree(int[] data, int low, int high){
         int middle = ( low + high ) / 2;

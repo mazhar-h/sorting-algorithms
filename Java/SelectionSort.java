@@ -8,7 +8,7 @@ public class SelectionSort extends Sort{
 		timeSort(new SelectionSort(), data);
 	}
 	
-	public SelectionSort(){ name = "Selection"; }
+	public SelectionSort(){ super("Selection"); }
 	
 	private void selectionSort(int[] data, int low, int high){
 	    for (int i = low; i < high; i++){

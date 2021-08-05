@@ -8,7 +8,7 @@ public class ShellSort extends Sort{
 		timeSort(new ShellSort(), data);
 	}
 	
-	public ShellSort(){ name = "Shell"; }
+	public ShellSort(){ super("Shell"); }
 	
 	private void shellSort(int[] data){
 	     for( int gap = data.length/2; gap > 0; gap /= 2 ) // determine sequence

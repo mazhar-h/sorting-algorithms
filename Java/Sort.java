@@ -2,10 +2,10 @@ package Java;
 
 import java.util.Random;
 
-public class Sort {
+public abstract class Sort {
 	
 	public static void main(String[] args){
-		int[] data = buildDataSet(10000);
+		int[] data = buildDataSet(5);
 		
 		timeSort(new BubbleSort(), data);
 		timeSort(new SelectionSort(), data);
@@ -17,11 +17,13 @@ public class Sort {
 		timeSort(new CountingSort(), data);
 	}
 	
-	String name;
+	private String name;
 	
 	public Sort(){ name = ""; }
 	
-	public void sort(int[] data){}
+	public Sort(String name) { this.name = name; };
+	
+	public abstract void sort(int[] data);
 	
 	public static void timeSort(Sort s, int[] data){
 		int[] unsorted;

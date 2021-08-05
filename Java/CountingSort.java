@@ -8,7 +8,7 @@ public class CountingSort extends Sort{
 		timeSort(new CountingSort(), data);
 	}
 	
-	public CountingSort(){ name = "Counting"; }
+	public CountingSort(){ super("Counting"); }
 		
 	private void countingSort(int[]data){
 	    int[] output = new int[data.length];

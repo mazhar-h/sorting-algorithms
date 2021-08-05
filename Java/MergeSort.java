@@ -8,7 +8,7 @@ public class MergeSort extends Sort{
 		timeSort(new MergeSort(), data);
 	}
 	
-	public MergeSort(){ name = "Merge"; }
+	public MergeSort(){ super("Merge"); }
 	
 	private int[] merge(int[] data, int low, int middle, int high){
 		int i = 0; 		// track dataA's index

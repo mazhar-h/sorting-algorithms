@@ -1,5 +1,5 @@
-import sort_tools
 import copy 
+import sort_tools
 
 def swap(data, index1, index2):
     temp = data[index1]

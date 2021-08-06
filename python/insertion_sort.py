@@ -1,5 +1,5 @@
-import sort_tools
 import copy
+import sort_tools
 
 def insertion_sort(data, n):
     for i in range(1, n):

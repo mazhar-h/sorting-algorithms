@@ -10,7 +10,7 @@ import quick_sort
 import counting_sort
 
 def main():
-    data = sort_tools.build_data_set(100000)
+    data = sort_tools.build_data_set(10000)
 
     s = [bubble_sort, selection_sort, insertion_sort,
          shell_sort, heap_sort, merge_sort, quick_sort, counting_sort]

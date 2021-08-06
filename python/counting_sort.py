@@ -1,5 +1,5 @@
-import sort_tools
 import copy
+import sort_tools
 
 def counting_sort(data):
     output = data.copy()

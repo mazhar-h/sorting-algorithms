@@ -7,9 +7,9 @@ def shell_sort(data, n):
         while gap > 0:
             for i in range(gap, n):
                 temp = data[i]; # create hole
-                j = i
 
                 #slide greater elements down
+                j = i
                 while j > 0 and data[j-gap] > temp:
                     data[j] = data[j-gap]
                     j -= gap

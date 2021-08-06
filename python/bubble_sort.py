@@ -1,5 +1,5 @@
-import sort_tools
 import copy
+import sort_tools
 
 def bubble_sort(data, low, high):
     for i in range(low, high):

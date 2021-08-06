@@ -1,5 +1,5 @@
-import sort_tools
 import copy
+import sort_tools
 
 def percolate_down(data, node, last_index):
     temp = data[node]
